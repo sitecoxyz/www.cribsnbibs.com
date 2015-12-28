@@ -1,0 +1,69 @@
+---
+title: About
+slug: about
+listed: true
+published: true
+cache_strategy: none
+response_type: text/html
+position: 1
+editable_elements:
+  main/about_us: <p>This is the about us page.</p>
+  /map_line1: Nostrand Fitness
+  /map_line2: Nostrand & St. Marks
+  /map_line3: (347) 715-9537
+  /latitude: '40.688580'
+  /longitude: '-73.989095'
+  main/about_bg_image: 
+  /map_style: '[{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#C6E2FF"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#C5E3BF"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#D1D1B8"}]}]'
+---
+{% extends 'parent' %}
+
+{% block main %}
+{% capture about_img_url %}{% editable_file 'about_bg_image' %}{% endeditable_file %}{% endcapture %}
+<style type="text/css">
+  html {
+    background: url('{% if about_img_url != '' %}{{ about_img_url }}{% else %}{{ 'img5.jpg' | theme_image_url }}{% endif %}') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .page-body {
+    color: white;
+  }
+  .page-body p {
+    margin: 0 0 5px;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+
+  .inner-text {
+    padding: 15px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 4px;
+  }
+  body { 
+    background: none;
+    margin-top: 150px;
+  }
+  footer .copyright {
+    color: white;
+  }
+  p.price {
+    margin-top: 30px;
+  }
+</style>
+<div class="page-body">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <div class="inner-text">
+                  <div class="service">
+                    <h1>About Us</h1>
+                    {% editable_text "about_us", priority: 28 %}<p>This is the about us page.</p>{% endeditable_text %}
+                  </div>
+              </div>  
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock main %}
